@@ -13,6 +13,12 @@ app.use(express.static('public'));
 app.use('/api', apiRoutes);
 app.use('/', htmlRoutes);
 
+
+// Get Request
+
+
+// Post Request
+
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}`);
 });
