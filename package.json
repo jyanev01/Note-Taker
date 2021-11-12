@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "Jest --verbose"
+    "test": "Jest --verbose",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -11,5 +12,14 @@
     "express": "^4.17.1"
   },
   "keywords": [],
-  "description": ""
+  "description": "Challenge: Note-Taker",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jyanev01/Note-Taker-Express.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jyanev01/Note-Taker-Express.js/issues"
+  },
+  "homepage": "https://github.com/jyanev01/Note-Taker-Express.js#readme"
 }
