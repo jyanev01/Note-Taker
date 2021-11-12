@@ -1,27 +1,36 @@
 const router = require('express').Router();
+const notePadApi = require('../../db/db.json');
+const fs = require("fs")
 
-const notes =[];
-
-// get the all the notes from the notes array created above
+// get the all the notes from the db.json file provided
 router.get('/notes', (req, res) =>{
-    res.json(notes);
+    let results = notePadApi;
+    res.json(results);
 });
 
-// get specific note
-router.get('/notes/:id', (req, res) =>{
-    
-    const params = [req.params.id];
+// get specific note fromt he notes array
+router.delete('/notes/:id', (req, res) =>{
+    const idToDelete = req.params.id;
 
-    res.json(notes);
+    notePadApi.forEach((obj, index) => {
+        if(obj.id == idToDelete){
+            notePadApi.splice(index, 1)
+        }
+    })
+
+    fs.writeFileSync("./db/db.json", JSON.stringify(notePadApi));
+
+    res.json(notePadApi);
 });
 
 
 // Post new note to the api
-router.post('/index', (req,res) => {
+router.post('/notes', (req,res) => {
     // something to const- of how to identify the ID
+    let results = 
     notes.push(req.body);
 
-    res.json(notes);
+    res.json(results);
 });
 
 
@@ -30,11 +39,11 @@ router.post('/index', (req,res) => {
 
 
 // Delete a note
-router.delete('/api/index/:id', (req, res) => {
-    // something to select the ID and the shoose this a
-    res.send('Item Deleted');
-    res.json(notes);
-})
+// router.delete('/api/index/:id', (req, res) => {
+//     // something to select the ID and the shoose this a
+//     res.send('Item Deleted');
+//     res.json(notes);
+// })
 
 
 
