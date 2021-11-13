@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const notePadApi = require('../../db/db.json');
 const fs = require("fs")
+const {v4: uuidv4} = require('uuid');
+
+
+
+
 
 // get the all the notes from the db.json file provided
 router.get('/notes', (req, res) =>{
@@ -26,28 +31,16 @@ router.delete('/notes/:id', (req, res) =>{
 
 // Post new note to the api
 router.post('/notes', (req,res) => {
-    // something to const- of how to identify the ID
-    let results = 
-    notes.push(req.body);
+    
+    const newNote = req.body;
+    newNote.id = uuidv4();
+    // console.log(newNote);
 
-    res.json(results);
+    notePadApi.push(newNote);
+    fs.writeFileSync("./db/db.json", JSON.stringify(notePadApi));
+    // push new item to new array
+    res.json(notePadApi);
 });
-
-
-
-
-
-
-// Delete a note
-// router.delete('/api/index/:id', (req, res) => {
-//     // something to select the ID and the shoose this a
-//     res.send('Item Deleted');
-//     res.json(notes);
-// })
-
-
-
-
 
 
 module.exports = router;
